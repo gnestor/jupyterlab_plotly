@@ -17,12 +17,23 @@ data = [
   {'x': [1999, 2000, 2001, 2002], 'y': [16, 5, 11, 9], 'type': 'scatter'}
 ]
 
+layout = {
+  'title': 'Sales Growth',
+  'xaxis': { 'title': 'Year', 'showgrid': False, 'zeroline': False },
+  'yaxis': { 'title': 'Percent', 'showline': False }
+}
+
 bundle = {
-    'application/vnd.plotly.v1+json': json.dumps(data),
+    'application/vnd.plotly.v1+json': {
+        'data': json.loads(json.dumps(data)),
+        'layout': json.loads(json.dumps(layout)),
+    }
 }
 
 display(bundle, raw=True)
 ```
+
+![output renderer](http://g.recordit.co/l5XTmLwVD4.gif)
 
 ## Installation
 
