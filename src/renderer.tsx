@@ -1,3 +1,8 @@
+/* 
+  Copyright (c) Jupyter Development Team.
+  Distributed under the terms of the Modified BSD License. 
+*/
+
 import {
   RenderMime
 } from 'jupyterlab/lib/rendermime';
@@ -14,6 +19,12 @@ import {
   JSONObject,
   JSONValue
 } from 'phosphor/lib/algorithm/json';
+
+import * as React from 'react';
+
+import * as ReactDOM from 'react-dom';
+
+import PlotlyRenderer from './component';
 
 const WIDGET_CLASS = 'jp-RenderedPlotly';
 
@@ -41,7 +52,7 @@ class RenderedWidget extends Widget {
    * A message handler invoked on an `'before-detach'` message.
    */
   protected onBeforeDetach(msg: Message): void {
-    
+    ReactDOM.unmountComponentAtNode(this._ref);
   }
 
   /**
@@ -49,11 +60,14 @@ class RenderedWidget extends Widget {
    */
   private _render(): void {
     let json: JSONValue = this._source;
-    let text = document.createTextNode(JSON.stringify(json));
-    this.node.appendChild(text);
+    this._ref = ReactDOM.render(<PlotlyRenderer data={json as {
+      data: any[],
+      layout: any
+    }} />, this.node) as Element;
   }
 
-  private _source: JSONObject = null;
+  private _source: JSONObject;
+  private _ref: Element;
 
 }
 
