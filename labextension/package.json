@@ -20,8 +20,9 @@
     "extension:disable": "jupyter labextension disable --py --sys-prefix jupyterlab_plotly"
   },
   "dependencies": {
-    "jupyterlab": "^0.8.0",
+    "jupyterlab": ">=0.8.0",
     "phosphor": "^0.6.1",
+    "plotly.js": "^1.20.5",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
