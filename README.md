@@ -1,63 +1,100 @@
 # jupyterlab_plotly
 
-A JupyterLab extension for rendering Plotly data
+A Jupyter Lab and Jupyter Notebook extension for rendering Plotly charts
+
+
+![lab](http://g.recordit.co/aXTJFdgYD2.gif)
+
+![notebook](http://g.recordit.co/AFtqwfIM9B.gif)
 
 ## Prerequisites
 
-* JupyterLab 0.7.0 or later
+* JupyterLab >=0.8.0 and/or Notebook >=4.3
 
 ## Usage
+
+To render Plotly JSON using IPython in Jupyter Lab:
 
 ```python
 from IPython.display import display
 import json
 
 data = [
-  {'x': [1999, 2000, 2001, 2002], 'y': [10, 15, 13, 17], 'type': 'scatter'},
-  {'x': [1999, 2000, 2001, 2002], 'y': [16, 5, 11, 9], 'type': 'scatter'}
+    {'x': [1999, 2000, 2001, 2002], 'y': [10, 15, 13, 17], 'type': 'scatter'},
+    {'x': [1999, 2000, 2001, 2002], 'y': [16, 5, 11, 9], 'type': 'scatter'}
 ]
 
 layout = {
-  'title': 'Sales Growth',
-  'xaxis': { 'title': 'Year', 'showgrid': False, 'zeroline': False },
-  'yaxis': { 'title': 'Percent', 'showline': False }
+    'title': 'Sales Growth',
+    'xaxis': { 'title': 'Year', 'showgrid': False, 'zeroline': False },
+    'yaxis': { 'title': 'Percent', 'showline': False }
 }
 
 bundle = {
     'application/vnd.plotly.v1+json': {
-        'data': json.loads(json.dumps(data)),
-        'layout': json.loads(json.dumps(layout)),
-    }
+        'data': data,
+        'layout': data,
+    },
+    'application/json': {
+        'data': data,
+        'layout': layout,
+    },
+    'text/plain': '<IPython.core.display.JSON.object>'
 }
 
 display(bundle, raw=True)
 ```
 
-![output renderer](http://g.recordit.co/l5XTmLwVD4.gif)
-
-## Installation
+## Install
 
 To install using pip:
 
 ```bash
 pip install jupyterlab_plotly
+# For JupyterLab
 jupyter labextension install --py --sys-prefix jupyterlab_plotly
 jupyter labextension enable --py --sys-prefix jupyterlab_plotly
+# For Notebook
+jupyter nbextension install --py --sys-prefix jupyterlab_plotly
+jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```
 
 ## Development
 
-For a development install (requires npm version 4 or later), do the following in the repository directory:
+### Set up using install script
+
+Use the `install.sh` script to build the Javascript, install the Python package, and install/enable the notebook and lab extensions:
 
 ```bash
-npm install
+bash install.sh --sys-prefix
+```
+
+Use the `build.sh` script to rebuild the Javascript:
+
+```bash
+bash build.sh
+```
+
+### Set up manually
+
+Alternatively, see the `README.md` in `/labextension` and `/nbextension` for extension-specific build instructions. 
+
+To install the Python package:
+
+```bash
 pip install -e .
+```
+
+To install the extension for Jupyter Lab:
+
+```bash
 jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
 jupyter labextension enable --py --sys-prefix jupyterlab_plotly
 ```
 
-To rebuild the extension bundle:
+To install the extension for Jupyter Notebook:
 
 ```bash
-npm run build
+jupyter nbextension install --symlink --py --sys-prefix jupyterlab_plotly
+jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```

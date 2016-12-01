@@ -7,3 +7,11 @@ def _jupyter_labextension_paths():
         'name': 'jupyterlab_plotly',
         'src': 'static',
     }]
+
+def _jupyter_nbextension_paths():
+    return [{
+        'section': 'notebook',
+        'src': 'static',
+        'dest': 'jupyterlab_plotly',
+        'require': 'jupyterlab_plotly/extension'
+    }]
