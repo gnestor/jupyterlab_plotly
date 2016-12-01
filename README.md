@@ -1,6 +1,11 @@
 # jupyterlab_plotly
 
-A Jupyter Lab and Jupyter Notebook extension for rendering Plotly
+A Jupyter Lab and Jupyter Notebook extension for rendering Plotly charts
+
+
+![lab](http://g.recordit.co/aXTJFdgYD2.gif)
+
+![notebook](http://g.recordit.co/AFtqwfIM9B.gif)
 
 ## Prerequisites
 
@@ -8,27 +13,39 @@ A Jupyter Lab and Jupyter Notebook extension for rendering Plotly
 
 ## Usage
 
-To render [JSON-able dict or list](https://ipython.org/ipython-doc/3/api/generated/IPython.display.html#IPython.display.JSON) in IPython as a tree:
-
-![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
+To render Plotly JSON using IPython in Jupyter Lab:
 
 ```python
-from IPython.display import JSON
-JSON({
-    'string': 'string',
-    'array': [1, 2, 3],
-    'bool': True,
-    'object': {
-        'foo': 'bar'
-    }
-})
+from IPython.display import display
+import json
+
+data = [
+    {'x': [1999, 2000, 2001, 2002], 'y': [10, 15, 13, 17], 'type': 'scatter'},
+    {'x': [1999, 2000, 2001, 2002], 'y': [16, 5, 11, 9], 'type': 'scatter'}
+]
+
+layout = {
+    'title': 'Sales Growth',
+    'xaxis': { 'title': 'Year', 'showgrid': False, 'zeroline': False },
+    'yaxis': { 'title': 'Percent', 'showline': False }
+}
+
+bundle = {
+    'application/vnd.plotly.v1+json': {
+        'data': data,
+        'layout': data,
+    },
+    'application/json': {
+        'data': data,
+        'layout': layout,
+    },
+    'text/plain': '<IPython.core.display.JSON.object>'
+}
+
+display(bundle, raw=True)
 ```
 
-To render a JSON file as a tree, simply open it:
-
-![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
-
-## Installation
+## Install
 
 To install using pip:
 
