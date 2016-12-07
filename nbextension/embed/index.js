@@ -46,13 +46,18 @@ define(function() { return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
-	// Entry point for the unpkg bundle containing custom model definitions.
-	//
-	// It differs from the notebook bundle in that it does not need to define a
-	// dynamic baseURL for the static assets and may load some css that would
-	// already be loaded by the notebook otherwise.
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	module.exports['version'] = __webpack_require__(1).version;
+	var _package = __webpack_require__(1);
+	
+	Object.defineProperty(exports, 'version', {
+	  enumerable: true,
+	  get: function get() {
+	    return _package.version;
+	  }
+	});
 
 /***/ },
 /* 1 */

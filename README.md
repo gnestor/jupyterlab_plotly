@@ -1,19 +1,18 @@
 # jupyterlab_plotly
 
-A Jupyter Lab and Jupyter Notebook extension for rendering Plotly charts
+A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
 
-
-![lab](http://g.recordit.co/aXTJFdgYD2.gif)
+![lab](http://g.recordit.co/CmiB0dfKUa.gif)
 
 ![notebook](http://g.recordit.co/AFtqwfIM9B.gif)
 
 ## Prerequisites
 
-* JupyterLab >=0.8.0 and/or Notebook >=4.3
+* JupyterLab >=0.11.0 and/or Notebook >=4.3
 
 ## Usage
 
-To render Plotly JSON using IPython in Jupyter Lab:
+To render Plotly JSON using IPython:
 
 ```python
 from IPython.display import display
@@ -85,7 +84,7 @@ To install the Python package:
 pip install -e .
 ```
 
-To install the extension for Jupyter Lab:
+To install the extension for JupyterLab:
 
 ```bash
 jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
