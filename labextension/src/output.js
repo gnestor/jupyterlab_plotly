@@ -3,11 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Component from './component';
 
+/**
+ * The class name added to this OutputWidget.
+ */
 const WIDGET_CLASS = 'jp-OutputWidgetPlotly';
 
 
 /**
- * A widget for displaying HTML and rendering math.
+ * A widget for rendering Plotly.
  */
 export class OutputWidget extends Widget {
 

@@ -1,28 +1,37 @@
 import { IRenderMime } from 'jupyterlab/lib/rendermime';
 import { IDocumentRegistry } from 'jupyterlab/lib/docregistry';
+import { toArray } from 'phosphor/lib/algorithm/iteration';
+import { findLastIndex } from 'phosphor/lib/algorithm/searching';
 import { OutputRenderer } from './output';
 import { DocWidgetFactory } from './doc';
 import './index.css';
 
 /**
- * Activate the table widget extension.
+ * Activate the extension.
  */
 function activatePlugin(app, rendermime, registry) {
 
   /**
-   * Add the MIME type  renderer to the top of the renderers.
+   * Calculate the index of the renderer in relation to other renderers
+   * or simply pass an integer such as 0, 1, or -1 (for last).
    */
-  rendermime.addRenderer('application/vnd.plotly.v1+json', new OutputRenderer(), 0);
+  // const index = findLastIndex(toArray(rendermime.mimetypes()), mimetype => mimetype.endsWith('+json')) + 1;
+  const index = 0;
   
-  if ('.plotly.json') {
+  /**
+   * Add the renderer to the registry of renderers.
+   */
+  rendermime.addRenderer('application/vnd.plotly.v1+json', new OutputRenderer(), index);
+  
+  if ('plotly.json') {
     /**
-     * The list of file extensions for json.
+     * Set the extensions associated with Plotly.
      */
-    const EXTENSIONS = ['..plotly.json'];
-    const DEFAULT_EXTENSIONS = ['..plotly.json'];
+    const EXTENSIONS = ['.plotly.json'];
+    const DEFAULT_EXTENSIONS = ['.plotly.json'];
 
     /**
-     * Add file handler for .plotly.json files.
+     * Add file handler for plotly.json files.
      */
     let options = {
       fileExtensions: EXTENSIONS,
@@ -41,7 +50,7 @@ function activatePlugin(app, rendermime, registry) {
 
 const Plugin = {
   id: 'jupyter.extensions.Plotly',
-  requires: '.plotly.json' ? [IRenderMime, IDocumentRegistry] : [IRenderMime],
+  requires: 'plotly.json' ? [IRenderMime, IDocumentRegistry] : [IRenderMime],
   activate: activatePlugin,
   autoStart: true
 };

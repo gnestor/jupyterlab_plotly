@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Plotly from 'plotly.js';
+import Plotly from 'plotly.js/lib/core';
 
 export default class Component extends React.Component {
 
