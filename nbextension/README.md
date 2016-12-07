@@ -8,7 +8,7 @@ A Jupyter Notebook extension for rendering Plotly output
 
 ## Usage
 
-To render [JSON-able dict or list](https://ipython.org/ipython-doc/3/api/generated/IPython.display.html#IPython.display.JSON) in IPython as a tree:
+To render Plotly output in IPython:
 
 ![screenshot](http://g.recordit.co/oKTa52HTK9.gif)
 
