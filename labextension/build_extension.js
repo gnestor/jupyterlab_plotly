@@ -1,4 +1,3 @@
-var path = require('path');
 var buildExtension = require('@jupyterlab/extension-builder').buildExtension;
 
 buildExtension({
@@ -21,11 +20,7 @@ buildExtension({
           exclude: /node_modules/, 
           loader: 'babel-loader',
           query: {
-            presets: [
-              'latest',
-              'stage-0',
-              'react'
-            ]
+            presets: ['latest', 'stage-0', 'react']
           }
         }
       ]

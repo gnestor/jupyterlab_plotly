@@ -5,19 +5,16 @@ import ReactDOM from 'react-dom';
 import Component from './component';
 
 /**
- * The class name added to a JSON widget.
+ * The class name added to this DocWidget.
  */
 const WIDGET_CLASS = 'jp-PlotlyWidget';
 
 
 /**
- * A base JSON widget class.
+ * A widget for rendering jupyterlab_plotly files.
  */
 export class DocWidget extends Widget {
 
-  /**
-   * Construct a new map widget.
-   */
   constructor(context) {
     super();
     this._context = context;
@@ -64,13 +61,10 @@ export class DocWidget extends Widget {
 
 
 /**
- * A widget factory for maps.
+ * A widget factory for DocWidget.
  */
 export class DocWidgetFactory extends ABCWidgetFactory {
 
-  /**
-   * Construct a new widget fatory.
-   */
   constructor(options) {
     super(options);
   }
