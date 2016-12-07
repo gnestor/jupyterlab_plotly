@@ -1,4 +1,3 @@
-var path = require('path');
 var version = require('./package.json').version;
 
 // Custom webpack loaders are generally the same for all webpack bundles, hence
@@ -37,6 +36,10 @@ module.exports = [
             filename: 'extension.js',
             path: '../jupyterlab_plotly/static',
             libraryTarget: 'amd'
+        },
+        devtool: 'source-map',
+        module: {
+            loaders: loaders,
         },
         externals: [
             'nbextensions/jupyterlab_plotly/index',
