@@ -15,8 +15,7 @@ A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
 To render Plotly JSON using IPython:
 
 ```python
-from IPython.display import display
-import json
+from jupyterlab_plotly import Plotly
 
 data = [
     {'x': [1999, 2000, 2001, 2002], 'y': [10, 15, 13, 17], 'type': 'scatter'},
@@ -29,19 +28,7 @@ layout = {
     'yaxis': { 'title': 'Percent', 'showline': False }
 }
 
-bundle = {
-    'application/vnd.plotly.v1+json': {
-        'data': data,
-        'layout': data,
-    },
-    'application/json': {
-        'data': data,
-        'layout': layout,
-    },
-    'text/plain': '<IPython.core.display.JSON.object>'
-}
-
-display(bundle, raw=True)
+Plotly(data, layout)
 ```
 
 ## Install
