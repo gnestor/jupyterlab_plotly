@@ -33,8 +33,8 @@ function activatePlugin(app, rendermime, registry) {
   /**
    * Set the extensions associated with Plotly.
    */
-  const EXTENSIONS = [ '.plotly' ];
-  const DEFAULT_EXTENSIONS = [ '.plotly' ];
+  const EXTENSIONS = [ '.plotly', '.plotly.json' ];
+  const DEFAULT_EXTENSIONS = [ '.plotly', '.plotly.json' ];
 
   /**
    * Add file handler for plotly files.

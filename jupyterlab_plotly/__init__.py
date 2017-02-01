@@ -1,9 +1,9 @@
 from IPython.display import display
+import json
 
 
 # Running `npm run build` will create static resources in the static
 # directory of this Python package (and create that directory if necessary).
-
 
 def _jupyter_labextension_paths():
     return [{
@@ -22,12 +22,18 @@ def _jupyter_nbextension_paths():
 
 # A display function that can be used within a notebook. E.g.:
 #   from jupyterlab_plotly import Plotly
-#   Plotly(data)
+#   Plotly(data, layout)
 
-def Plotly(data):
+def Plotly(data, layout):
     bundle = {
-        'application/vnd.plotly.v1+json': data,
-        'application/json': data,
+        'application/vnd.plotly.v1+json': {
+            'data': data,
+            'layout': layout,
+        },
+        'application/json': {
+            'data': data,
+            'layout': layout,
+        },
         'text/plain': '<jupyterlab_plotly.Plotly object>'
     }
     display(bundle, raw=True)

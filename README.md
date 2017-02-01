@@ -1,33 +1,37 @@
 # jupyterlab_plotly
 
-A JupyterLab and Jupyter Notebook extension for rendering Plotly
+A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
 
-![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
+![lab](http://g.recordit.co/CmiB0dfKUa.gif)
+
+![notebook](http://g.recordit.co/AFtqwfIM9B.gif)
 
 ## Prerequisites
 
-* JupyterLab ^0.14 and/or Notebook >=4.3
+* JupyterLab ^0.15.0 and/or Notebook >=4.3.0
 
 ## Usage
 
-To render Plotly output in IPython:
+To render Plotly JSON using IPython:
 
 ```python
 from jupyterlab_plotly import Plotly
 
-Plotly({
-    "string": "string",
-    "array": [1, 2, 3],
-    "bool": True,
-    "object": {
-        "foo": "bar"
-    }
-})
+data = [
+    {'x': [1999, 2000, 2001, 2002], 'y': [10, 15, 13, 17], 'type': 'scatter'},
+    {'x': [1999, 2000, 2001, 2002], 'y': [16, 5, 11, 9], 'type': 'scatter'}
+]
+
+layout = {
+    'title': 'Sales Growth',
+    'xaxis': { 'title': 'Year', 'showgrid': False, 'zeroline': False },
+    'yaxis': { 'title': 'Percent', 'showline': False }
+}
+
+Plotly(data, layout)
 ```
 
-To render a `.plotly` file as a tree, simply open it:
-
-![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
+To render a Plotly JSON (`.plotly` or `.plotly.json`) file in JupyterLab, simply open it.
 
 ## Install
 
