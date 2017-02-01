@@ -1,7 +1,7 @@
 import { Widget } from 'phosphor/lib/ui/widget';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Plotly from 'jupyterlab_plotly_react';
+import PlotlyComponent from 'jupyterlab_plotly_react';
 
 /**
  * The class name added to this OutputWidget.
@@ -37,7 +37,7 @@ export class OutputWidget extends Widget {
    */
   _render() {
     let json = this._source;
-    ReactDOM.render(<Plotly data={json} />, this.node);
+    ReactDOM.render(<PlotlyComponent data={json} />, this.node);
   }
 }
 

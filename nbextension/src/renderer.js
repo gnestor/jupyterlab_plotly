@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Plotly from 'jupyterlab_plotly_react';
+import PlotlyComponent from 'jupyterlab_plotly_react';
 import './index.css';
 
 const MIME_TYPE = 'application/vnd.plotly.v1+json';
@@ -10,7 +10,7 @@ const CLASS_NAME = 'output_Plotly rendered_html';
  * Render data to the output area
  */
 function render(data, node) {
-    ReactDOM.render(<Plotly data={data} />, node);
+    ReactDOM.render(<PlotlyComponent data={data} />, node);
 }
 
 /**
