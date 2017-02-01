@@ -30,10 +30,7 @@ def Plotly(data, layout):
             'data': data,
             'layout': layout,
         },
-        'application/json': {
-            'data': data,
-            'layout': layout,
-        },
-        'text/plain': '<jupyterlab_plotly.Plotly object>'
+        'application/json': data,
+        'text/plain': json.dumps(data, indent=4)
     }
     display(bundle, raw=True)
