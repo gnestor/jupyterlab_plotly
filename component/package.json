@@ -1,0 +1,19 @@
+{
+  "name": "jupyterlab_plotly_react",
+  "version": "1.0.0",
+  "description": "A React component for rendering Plotly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jupyter",
+    "react"
+  ],
+  "author": "Grant Nestor <grantnestor@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "plotly.js": "^1.22.0",
+    "react": "^15.3.2"
+  }
+}

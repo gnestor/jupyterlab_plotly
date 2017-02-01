@@ -8,7 +8,7 @@ A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
 
 ## Prerequisites
 
-* JupyterLab ^0.14 and/or Notebook >=4.3
+* JupyterLab ^0.15.0 and/or Notebook >=4.3.0
 
 ## Usage
 
@@ -30,6 +30,8 @@ layout = {
 
 Plotly(data, layout)
 ```
+
+To render a Plotly JSON (`.plotly` or `.plotly.json`) file in JupyterLab, simply open it.
 
 ## Install
 

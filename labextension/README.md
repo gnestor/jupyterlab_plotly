@@ -1,34 +1,10 @@
 # jupyterlab_plotly JupyterLab extension
 
-A JupyterLab extension for rendering Plotly output and files
+A JupyterLab extension for rendering Plotly
 
 ## Prerequisites
 
-<<<<<<< 0b7cfde46b61523e30d557319e0b6ea2ce3dd35f
-* JupyterLab >= 0.11
-=======
-* JupyterLab >=0.11.0
-
-## Usage
-
-To render Plotly output in IPython:
->>>>>>> jupyterlab/master
-
-![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
-
-```python
-from IPython.display import JSON
-JSON({
-    'string': 'string',
-    'array': [1, 2, 3],
-    'bool': True,
-    'object': {
-        'foo': 'bar'
-    }
-})
-```
-
-To render a .plotly.json file as a tree, simply open it:
+* `jupyterlab@^0.15.0`
 
 ![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Plotly from 'plotly.js/lib/core';
+// import './index.css';
 
-export default class Component extends React.Component {
+export default class PlotlyComponent extends React.Component {
 
   componentDidMount() {
     const { data, layout } = this.getFigure();

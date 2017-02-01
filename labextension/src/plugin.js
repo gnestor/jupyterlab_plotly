@@ -10,47 +10,51 @@ import './index.css';
  * Activate the extension.
  */
 function activatePlugin(app, rendermime, registry) {
-
   /**
-   * Calculate the index of the renderer in relation to other renderers
-   * or simply pass an integer such as 0, 1, or -1 (for last).
+   * Calculate the index of the renderer in the array renderers (e.g. Insert 
+   * this renderer after any renderers with mime type that matches "+json") 
+   * or simply pass an integer such as 0.
    */
-  // const index = findLastIndex(toArray(rendermime.mimetypes()), mimetype => mimetype.endsWith('+json')) + 1;
+  // const index = findLastIndex(
+  //   toArray(rendermime.mimetypes()),
+  //   mimetype => mimetype.endsWith('+json')
+  // ) + 1;
   const index = 0;
-  
+
   /**
    * Add the renderer to the registry of renderers.
    */
-  rendermime.addRenderer('application/vnd.plotly.v1+json', new OutputRenderer(), index);
-  
-  if ('plotly.json') {
-    /**
-     * Set the extensions associated with Plotly.
-     */
-    const EXTENSIONS = ['.plotly', '.plotly.json'];
-    const DEFAULT_EXTENSIONS = ['.plotly', '.plotly.json'];
+  rendermime.addRenderer(
+    'application/vnd.plotly.v1+json',
+    new OutputRenderer(),
+    index
+  );
 
-    /**
-     * Add file handler for plotly.json files.
-     */
-    let options = {
-      fileExtensions: EXTENSIONS,
-      defaultFor: DEFAULT_EXTENSIONS,
-      name: 'Plotly',
-      displayName: 'Plotly',
-      modelName: 'text',
-      preferKernel: false,
-      canStartKernel: false
-    };
+  /**
+   * Set the extensions associated with Plotly.
+   */
+  const EXTENSIONS = [ '.plotly', '.plotly.json' ];
+  const DEFAULT_EXTENSIONS = [ '.plotly', '.plotly.json' ];
 
-    registry.addWidgetFactory(new DocWidgetFactory(options));
-  }
+  /**
+   * Add file handler for plotly files.
+   */
+  let options = {
+    fileExtensions: EXTENSIONS,
+    defaultFor: DEFAULT_EXTENSIONS,
+    name: 'Plotly',
+    displayName: 'Plotly',
+    modelName: 'text',
+    preferKernel: false,
+    canStartKernel: false
+  };
 
+  registry.addWidgetFactory(new DocWidgetFactory(options));
 }
 
 const Plugin = {
   id: 'jupyter.extensions.Plotly',
-  requires: 'plotly.json' ? [IRenderMime, IDocumentRegistry] : [IRenderMime],
+  requires: [ IRenderMime, IDocumentRegistry ],
   activate: activatePlugin,
   autoStart: true
 };
