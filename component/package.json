@@ -13,7 +13,6 @@
   "author": "Grant Nestor <grantnestor@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "plotly.js": "^1.22.0",
     "react": "^15.3.2"
   }
 }

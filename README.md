@@ -1,10 +1,8 @@
 # jupyterlab_plotly
 
-A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
+A JupyterLab and Jupyter Notebook extension for rendering Plotly
 
-![lab](http://g.recordit.co/CmiB0dfKUa.gif)
-
-![notebook](http://g.recordit.co/AFtqwfIM9B.gif)
+![output renderer](http://g.recordit.co/QAsC7YULcY.gif)
 
 ## Prerequisites
 
@@ -12,30 +10,26 @@ A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
 
 ## Usage
 
-To render Plotly JSON using IPython:
+To render Plotly output in IPython:
 
 ```python
 from jupyterlab_plotly import Plotly
 
-data = [
-    {'x': [1999, 2000, 2001, 2002], 'y': [10, 15, 13, 17], 'type': 'scatter'},
-    {'x': [1999, 2000, 2001, 2002], 'y': [16, 5, 11, 9], 'type': 'scatter'}
-]
-
-layout = {
-    'title': 'Sales Growth',
-    'xaxis': { 'title': 'Year', 'showgrid': False, 'zeroline': False },
-    'yaxis': { 'title': 'Percent', 'showline': False }
-}
-
-Plotly(data, layout)
+Plotly({
+    "string": "string",
+    "array": [1, 2, 3],
+    "bool": True,
+    "object": {
+        "foo": "bar"
+    }
+})
 ```
 
-To render a Plotly JSON (`.plotly` or `.plotly.json`) file in JupyterLab, simply open it.
+To render a `.plotly` file as a tree, simply open it:
+
+![file renderer](http://g.recordit.co/cbf0xnQHKn.gif)
 
 ## Install
-
-To install using pip:
 
 ```bash
 pip install jupyterlab_plotly
@@ -49,40 +43,16 @@ jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 
 ## Development
 
-### Set up using install script
-
-Use the `install.sh` script to build the Javascript, install the Python package, and install/enable the notebook and lab extensions:
-
 ```bash
-bash install.sh --sys-prefix
-```
-
-Use the `build.sh` script to rebuild the Javascript:
-
-```bash
-bash build.sh
-```
-
-### Set up manually
-
-Alternatively, see the `README.md` in `/labextension` and `/nbextension` for extension-specific build instructions. 
-
-To install the Python package:
-
-```bash
+git clone https://github.com/jupyterlab/jupyterlab_plotly.git
+cd jupyterlab_plotly
 pip install -e .
-```
-
-To install the extension for JupyterLab:
-
-```bash
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
+# For JupyterLab
+jupyter labextension install --py --symlink --sys-prefix jupyterlab_plotly
+# Windows users: jupyter labextension install --py --sys-prefix jupyterlab_plotly
 jupyter labextension enable --py --sys-prefix jupyterlab_plotly
-```
-
-To install the extension for Jupyter Notebook:
-
-```bash
-jupyter nbextension install --symlink --py --sys-prefix jupyterlab_plotly
+# For Notebook
+jupyter nbextension install --py --symlink --sys-prefix jupyterlab_plotly
+# Windows users: jupyter nbextension install --py --sys-prefix jupyterlab_plotly
 jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```

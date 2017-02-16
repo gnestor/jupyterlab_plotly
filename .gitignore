@@ -1,9 +1,12 @@
+labextension/lib/
+nbextension/lib/
 nbextension/embed/
 */node_modules/
 npm-debug.log
 *.egg-info/
 build/
 dist/
+MANIFEST
 
 # Compiled javascript
 jupyterlab_plotly/__pycache__/

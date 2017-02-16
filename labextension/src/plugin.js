@@ -30,31 +30,35 @@ function activatePlugin(app, rendermime, registry) {
     index
   );
 
-  /**
-   * Set the extensions associated with Plotly.
-   */
-  const EXTENSIONS = [ '.plotly', '.plotly.json' ];
-  const DEFAULT_EXTENSIONS = [ '.plotly', '.plotly.json' ];
+  if ('plotly') {
+    /**
+     * Set the extensions associated with Plotly.
+     */
+    const EXTENSIONS = [ '.plotly' ];
+    const DEFAULT_EXTENSIONS = [ '.plotly' ];
 
-  /**
-   * Add file handler for plotly files.
-   */
-  let options = {
-    fileExtensions: EXTENSIONS,
-    defaultFor: DEFAULT_EXTENSIONS,
-    name: 'Plotly',
-    displayName: 'Plotly',
-    modelName: 'text',
-    preferKernel: false,
-    canStartKernel: false
-  };
+    /**
+     * Add file handler for plotly files.
+     */
+    let options = {
+      fileExtensions: EXTENSIONS,
+      defaultFor: DEFAULT_EXTENSIONS,
+      name: 'Plotly',
+      displayName: 'Plotly',
+      modelName: 'text',
+      preferKernel: false,
+      canStartKernel: false
+    };
 
-  registry.addWidgetFactory(new DocWidgetFactory(options));
+    registry.addWidgetFactory(new DocWidgetFactory(options));
+  }
 }
 
 const Plugin = {
   id: 'jupyter.extensions.Plotly',
-  requires: [ IRenderMime, IDocumentRegistry ],
+  requires: 'plotly'
+    ? [ IRenderMime, IDocumentRegistry ]
+    : [ IRenderMime ],
   activate: activatePlugin,
   autoStart: true
 };
