@@ -6,7 +6,10 @@ var path = require('path');
 var loaders = [
   {
     test: /\.js$/,
-    exclude: /node_modules(?!\/jupyterlab_plotly_react)/,
+    include: [
+      path.join(__dirname, 'src'),
+      path.join(__dirname, 'node_modules','jupyterlab_plotly_react' ),
+    ],
     loader: 'babel-loader',
     query: { presets: [ 'latest', 'stage-0', 'react' ] }
   },
@@ -42,18 +45,15 @@ module.exports = [
   // "load_ipython_extension" function which is required for any notebook
   // extension.
   {
-    entry: './src/extension.js',
+    entry: path.join(__dirname, 'src', 'extension.js'),
     output: {
       filename: 'extension.js',
-      path: '../jupyterlab_plotly/static',
+      path: path.join(__dirname, '..', 'jupyterlab_plotly', 'static'),
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
-    module: { loaders: loaders },
-    externals: [
-      'nbextensions/jupyterlab_plotly/index',
-      'jquery'
-    ]
+    module: { loaders },
+    externals: ['nbextensions/jupyterlab_plotly/index', 'jquery']
   },
   // Bundle for the notebook containing the custom widget views and models
   //
@@ -61,14 +61,14 @@ module.exports = [
   // custom widget.
   // It must be an amd module
   {
-    entry: './src/index.js',
+    entry: path.join(__dirname, 'src', 'index.js'),
     output: {
       filename: 'index.js',
-      path: '../jupyterlab_plotly/static',
+      path: path.join(__dirname, '..', 'jupyterlab_plotly', 'static'),
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
-    module: { loaders: loaders }
+    module: { loaders }
   },
   // Embeddable jupyterlab_plotly bundle
   //
@@ -84,16 +84,14 @@ module.exports = [
   // The target bundle is always `lib/index.js`, which is the path required
   // by the custom widget embedder.
   {
-    entry: './src/embed.js',
+    entry: path.join(__dirname, 'src', 'embed.js'),
     output: {
       filename: 'index.js',
-      path: './embed/',
+      path: path.join(__dirname, 'embed'),
       libraryTarget: 'amd',
-      publicPath: 'https://unpkg.com/jupyterlab_plotly@' +
-        version +
-        '/lib/'
+      publicPath: 'https://unpkg.com/jupyterlab_plotly@' + version + '/lib/'
     },
     devtool: 'source-map',
-    module: { loaders: loaders }
+    module: { loaders }
   }
 ];
