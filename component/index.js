@@ -3,7 +3,6 @@ import Plotly from 'plotly.js/lib/core';
 // import './index.css';
 
 export default class PlotlyComponent extends React.Component {
-
   componentDidMount() {
     const { data, layout } = this.getFigure();
     Plotly.newPlot(this.el, data, layout);
@@ -23,18 +22,21 @@ export default class PlotlyComponent extends React.Component {
   render() {
     const { layout } = this.getFigure();
     const style = {};
-    if (layout && layout.height && !layout.autosize) style.height = layout.height;
+    if (layout && layout.height && !layout.autosize)
+      style.height = layout.height;
     return (
-      <div style={style} ref={(el) => { 
-        this.el = el; 
-      }} />
+      <div
+        style={style}
+        ref={el => {
+          this.el = el;
+        }}
+      />
     );
   }
-  
+
   getFigure = () => {
     const { data } = this.props;
     if (typeof data === 'string') return JSON.parse(data);
     return data;
-  }
-
+  };
 }

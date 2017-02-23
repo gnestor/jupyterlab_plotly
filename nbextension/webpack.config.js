@@ -13,7 +13,7 @@ var loaders = [
       path.join(__dirname, 'node_modules', 'jupyterlab_plotly_react')
     ],
     loader: 'babel-loader',
-    query: { presets: [ 'latest', 'stage-0', 'react' ] }
+    query: { presets: ['latest', 'stage-0', 'react'] }
   },
   { test: /\.json$/, loader: 'json-loader' },
   { test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -52,20 +52,12 @@ module.exports = [
     entry: path.join(__dirname, 'src', 'extension.js'),
     output: {
       filename: 'extension.js',
-      path: path.join(
-        __dirname,
-        '..',
-        'jupyterlab_plotly',
-        'static'
-      ),
+      path: path.join(__dirname, '..', 'jupyterlab_plotly', 'static'),
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
     module: { loaders },
-    externals: [
-      'nbextensions/jupyterlab_plotly/index', 
-      'base/js/namespace'
-    ]
+    externals: ['nbextensions/jupyterlab_plotly/index', 'base/js/namespace']
   },
   /**
    * Bundle for the notebook containing the custom widget views and models
@@ -79,12 +71,7 @@ module.exports = [
     entry: path.join(__dirname, 'src', 'index.js'),
     output: {
       filename: 'index.js',
-      path: path.join(
-        __dirname,
-        '..',
-        'jupyterlab_plotly',
-        'static'
-      ),
+      path: path.join(__dirname, '..', 'jupyterlab_plotly', 'static'),
       libraryTarget: 'amd'
     },
     devtool: 'source-map',
@@ -111,9 +98,7 @@ module.exports = [
       filename: 'index.js',
       path: path.join(__dirname, 'embed'),
       libraryTarget: 'amd',
-      publicPath: (
-        'https://unpkg.com/jupyterlab_plotly@' + version + '/lib/'
-      )
+      publicPath: 'https://unpkg.com/jupyterlab_plotly@' + version + '/lib/'
     },
     devtool: 'source-map',
     module: { loaders }

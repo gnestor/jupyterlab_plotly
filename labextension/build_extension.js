@@ -4,12 +4,7 @@ var path = require('path');
 buildExtension({
   name: 'jupyterlab_plotly',
   entry: path.join(__dirname, 'src', 'plugin.js'),
-  outputDir: path.join(
-    __dirname,
-    '..',
-    'jupyterlab_plotly',
-    'static'
-  ),
+  outputDir: path.join(__dirname, '..', 'jupyterlab_plotly', 'static'),
   useDefaultLoaders: false,
   config: {
     module: {
@@ -41,7 +36,7 @@ buildExtension({
             path.join(__dirname, 'node_modules', 'jupyterlab_plotly_react')
           ],
           loader: 'babel-loader',
-          query: { presets: [ 'latest', 'stage-0', 'react' ] }
+          query: { presets: ['latest', 'stage-0', 'react'] }
         }
       ]
     }

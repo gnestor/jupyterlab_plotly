@@ -48,7 +48,7 @@ export class OutputRenderer {
   /**
    * The mime types this OutputRenderer accepts.
    */
-  mimeTypes = [ 'application/vnd.plotly.v1+json' ];
+  mimeTypes = ['application/vnd.plotly.v1+json'];
 
   /**
    * Whether the renderer can render given the render options.
