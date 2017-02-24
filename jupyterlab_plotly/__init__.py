@@ -1,4 +1,4 @@
-from IPython.display import display, JSON, DisplayObject
+from IPython.display import display, DisplayObject
 import json
 import pandas as pd
 from .utils import prepare_plotly_data

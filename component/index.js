@@ -4,8 +4,10 @@ import Plotly from 'plotly.js/lib/core';
 
 export default class PlotlyComponent extends React.Component {
   componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
     const { data, layout } = this.getFigure();
     Plotly.newPlot(this.el, data, layout);
+    this.handleResize();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -18,12 +20,17 @@ export default class PlotlyComponent extends React.Component {
     this.el.layout = layout;
     Plotly.redraw(this.el);
   }
+  
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
 
   render() {
     const { layout } = this.getFigure();
-    const style = {};
-    if (layout && layout.height && !layout.autosize)
-      style.height = layout.height;
+    const style = {
+      width: '100%',
+      height: layout && layout.height && !layout.autosize ? layout.height : 450
+    };
     return (
       <div
         style={style}
@@ -33,10 +40,14 @@ export default class PlotlyComponent extends React.Component {
       />
     );
   }
+  
+  handleResize = (event) => {
+    Plotly.Plots.resize(this.el);
+  }
 
   getFigure = () => {
     const { data } = this.props;
     if (typeof data === 'string') return JSON.parse(data);
     return data;
-  };
+  }
 }
