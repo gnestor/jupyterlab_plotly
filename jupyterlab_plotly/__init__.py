@@ -1,5 +1,7 @@
 from IPython.display import display, JSON, DisplayObject
 import json
+import pandas as pd
+from .utils import prepare_plotly_data
 
 
 # Running `npm run build` will create static resources in the static
@@ -59,8 +61,8 @@ class Plotly(DisplayObject):
     def _check_data(self):
         if self.layout is not None and not isinstance(self.layout, dict):
             raise TypeError("%s expects a JSONable dict, not %r" % (self.__class__.__name__, self.layout))
-        if self.data is not None and not isinstance(self.data, (dict, list, pd.DataFrame)):
-            raise TypeError("%s expects a JSONable dict, not %r" % (self.__class__.__name__, self.data))
+        if self.data is not None and not isinstance(self.data, (list, pd.DataFrame)):
+            raise TypeError("%s expects a JSONable list or pandas DataFrame, not %r" % (self.__class__.__name__, self.data))
 
     @property
     def layout(self):
@@ -73,14 +75,14 @@ class Plotly(DisplayObject):
     @layout.setter
     def layout(self, layout):
         if isinstance(layout, str):
-            warnings.warn("Plotly expects a JSONable dict, not JSON strings")
+            # warnings.warn("Plotly expects a JSONable dict, not JSON strings")
             layout = json.loads(layout)
         self._layout = layout
 
     @data.setter
     def data(self, data):
         if isinstance(data, str):
-            warnings.warn("Plotly expects JSONable dict or list, not JSON strings")
+            # warnings.warn("Plotly expects JSONable dict or list, not JSON strings")
             data = json.loads(data)
         self._data = data
         
@@ -88,7 +90,7 @@ class Plotly(DisplayObject):
         bundle = {
             'application/vnd.plotly.v1+json': {
                 'layout': self.layout,
-                'data': self.data
+                'data': prepare_plotly_data(self.data)
             },
             'text/plain': '<jupyterlab_plotly.Plotly object>'
         }
