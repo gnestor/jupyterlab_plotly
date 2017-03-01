@@ -1,4 +1,4 @@
-import { Widget } from 'phosphor/lib/ui/widget';
+import { Widget } from '@phosphor/widgets';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PlotlyComponent from 'jupyterlab_plotly_react';
@@ -15,7 +15,8 @@ export class OutputWidget extends Widget {
   constructor(options) {
     super();
     this.addClass(CLASS_NAME);
-    this._source = options.source;
+    this._data = options.model.data.get(options.mimeType);
+    this._metadata = options.model.metadata.get(options.mimeType);
   }
 
   /**
@@ -36,8 +37,10 @@ export class OutputWidget extends Widget {
    * A render function given the widget's DOM node.
    */
   _render() {
-    let json = this._source;
-    ReactDOM.render(<PlotlyComponent data={json} />, this.node);
+    ReactDOM.render(
+      <PlotlyComponent data={this._data} metadata={this._metadata} />,
+      this.node
+    );
   }
 }
 
@@ -45,20 +48,13 @@ export class OutputRenderer {
   /**
    * The mime types this OutputRenderer accepts.
    */
-  mimetypes = [ 'application/vnd.plotly.v1+json' ];
+  mimeTypes = ['application/vnd.plotly.v1+json'];
 
   /**
-   * Whether the input can safely sanitized for a given mime type.
+   * Whether the renderer can render given the render options.
    */
-  isSanitizable(mimetype) {
-    return this.mimetypes.indexOf(mimetype) !== -1;
-  }
-
-  /**
-   * Whether the input is safe without sanitization.
-   */
-  isSafe(mimetype) {
-    return false;
+  canRender(options) {
+    return this.mimeTypes.indexOf(options.mimeType) !== -1;
   }
 
   /**

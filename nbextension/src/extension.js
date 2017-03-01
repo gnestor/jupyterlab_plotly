@@ -11,7 +11,7 @@ if (window.require) {
   window.require.config({
     map: {
       '*': {
-        'jupyterlab_plotly': 'nbextensions/jupyterlab_plotly/index'
+        jupyterlab_plotly: 'nbextensions/jupyterlab_plotly/index'
       }
     }
   });
@@ -21,12 +21,12 @@ if (window.require) {
  * Export the required load_ipython_extention.
  */
 export function load_ipython_extension() {
-  define([ 'nbextensions/jupyterlab_plotly/index', 'jquery' ], (
+  define(['nbextensions/jupyterlab_plotly/index', 'base/js/namespace'], (
     Extension,
-    $
-  ) =>
-    {
-      Extension.register_renderer($);
-      Extension.render_cells($);
-    });
+    Jupyter
+  ) => {
+    const { notebook } = Jupyter;
+    Extension.register_renderer(notebook);
+    Extension.render_cells(notebook);
+  });
 }
