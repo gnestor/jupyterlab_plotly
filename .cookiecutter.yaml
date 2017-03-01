@@ -1,0 +1,7 @@
+default_context:
+    author_name: "Grant Nestor"
+    author_email: "grantnestor@gmail.com"
+    mime_type: "application/vnd.plotly.v1+json"
+    file_extension: "plotly"
+    mime_short_name: "Plotly"
+    extension_name: "jupyterlab_plotly"
