@@ -1,6 +1,6 @@
-# jupyterlab_plotly
+# component
 
-The React component(s)
+A React component for rendering Plotly
 
 ## Structure
 
