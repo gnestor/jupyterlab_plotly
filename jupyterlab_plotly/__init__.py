@@ -1,12 +1,10 @@
 from IPython.display import display, DisplayObject
 import json
 import pandas as pd
-from .utils import prepare_plotly_data
 
 
 # Running `npm run build` will create static resources in the static
 # directory of this Python package (and create that directory if necessary).
-
 
 def _jupyter_labextension_paths():
     return [{
@@ -22,6 +20,13 @@ def _jupyter_nbextension_paths():
         'require': 'jupyterlab_plotly/extension'
     }]
 
+def prepare_data(data=None):
+    """Prepare JSONTable data from Pandas DataFrame."""
+    
+    if isinstance(data, pd.DataFrame):
+        data = data.to_json(orient='records')
+        return json.loads(data)
+    return data
 
 # A display class that can be used within a notebook. E.g.:
 #   from jupyterlab_plotly import Plotly
@@ -90,7 +95,7 @@ class Plotly(DisplayObject):
         bundle = {
             'application/vnd.plotly.v1+json': {
                 'layout': self.layout,
-                'data': prepare_plotly_data(self.data)
+                'data': prepare_data(self.data)
             },
             'text/plain': '<jupyterlab_plotly.Plotly object>'
         }
