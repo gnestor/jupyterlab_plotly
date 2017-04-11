@@ -1,6 +1,6 @@
 # jupyterlab_plotly
 
-A JupyterLab and Jupyter Notebook extension for rendering Plotly charts
+A JupyterLab and Jupyter Notebook extension for rendering [Plotly](https://plot.ly/python/) charts
 
 ![lab](http://g.recordit.co/CmiB0dfKUa.gif)
 
