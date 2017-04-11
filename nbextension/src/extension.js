@@ -21,12 +21,18 @@ if (window.require) {
  * Export the required load_ipython_extention.
  */
 export function load_ipython_extension() {
-  define(['nbextensions/jupyterlab_plotly/index', 'base/js/namespace'], (
-    Extension,
-    Jupyter
-  ) => {
-    const { notebook } = Jupyter;
-    Extension.register_renderer(notebook);
-    Extension.render_cells(notebook);
-  });
+  define(
+    [
+      'nbextensions/jupyterlab_plotly/index',
+      'base/js/namespace',
+      'base/js/events',
+      'notebook/js/outputarea'
+    ],
+    (Extension, Jupyter, events, outputarea) => {
+      const { notebook } = Jupyter;
+      const { OutputArea } = outputarea;
+      Extension.register_renderer(notebook, events, OutputArea);
+      Extension.render_cells(notebook);
+    }
+  );
 }
