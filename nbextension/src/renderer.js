@@ -1,7 +1,7 @@
-  import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import PlotlyComponent from 'jupyterlab_plotly_react';
-import './index.css';
+import '../index.css';
 
 const MIME_TYPE = 'application/vnd.plotly.v1+json';
 const CLASS_NAME = 'output_Plotly rendered_html';
@@ -32,7 +32,7 @@ function handleAddOutput(event, { output, output_area }) {
   /* Get rendered DOM node */
   const toinsert = output_area.element.find(`.${CLASS_NAME.split(' ')[0]}`);
   /** e.g. Inject a static image representation into the mime bundle for
-   *  endering on Github, etc.
+   *  rendering on Github, etc.
    */
   // if (toinsert[0]) {
   //   renderLibrary.toPng(toinsert[0]).then(url => {

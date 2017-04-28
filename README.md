@@ -8,11 +8,11 @@ A JupyterLab and Jupyter Notebook extension for rendering [Plotly](https://plot.
 
 ## Prerequisites
 
-* JupyterLab ^0.18.0 and/or Notebook >=4.3.0
+* JupyterLab ^0.20.0 and/or Notebook >=4.3.0
 
 ## Usage
 
-To render Plotly JSON using IPython:
+To render Plotly output in IPython:
 
 ```python
 from jupyterlab_plotly import Plotly
@@ -36,12 +36,11 @@ To render a Plotly JSON (`.plotly` or `.plotly.json`) file in JupyterLab, simply
 ## Install
 
 ```bash
-pip install jupyterlab_plotly
 # For JupyterLab
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
-jupyter labextension enable --py --sys-prefix jupyterlab_plotly
+jupyter labextension install jupyterlab_plotly
 # For Notebook
-jupyter nbextension install --symlink --py --sys-prefix jupyterlab_plotly
+pip install jupyterlab_plotly
+jupyter nbextension install --py --sys-prefix jupyterlab_plotly
 jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```
 
@@ -50,8 +49,8 @@ jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```bash
 pip install -e .
 # For JupyterLab
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
-jupyter labextension enable --py --sys-prefix jupyterlab_plotly
+cd labextension
+jupyter labextension link .
 # For Notebook
 jupyter nbextension install --symlink --py --sys-prefix jupyterlab_plotly
 jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
