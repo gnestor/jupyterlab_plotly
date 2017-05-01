@@ -6,7 +6,7 @@ A JupyterLab and Jupyter Notebook extension for rendering Plotly
 
 ## Prerequisites
 
-* JupyterLab ^0.18.0 and/or Notebook >=4.3.0
+* JupyterLab ^0.20.0 and/or Notebook >=4.3.0
 
 ## Usage
 
@@ -32,12 +32,11 @@ To render a `.plotly` file as a tree, simply open it:
 ## Install
 
 ```bash
-pip install jupyterlab_plotly
 # For JupyterLab
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
-jupyter labextension enable --py --sys-prefix jupyterlab_plotly
+jupyter labextension install jupyterlab_plotly
 # For Notebook
-jupyter nbextension install --symlink --py --sys-prefix jupyterlab_plotly
+pip install jupyterlab_plotly
+jupyter nbextension install --py --sys-prefix jupyterlab_plotly
 jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```
 
@@ -46,8 +45,8 @@ jupyter nbextension enable --py --sys-prefix jupyterlab_plotly
 ```bash
 pip install -e .
 # For JupyterLab
-jupyter labextension install --symlink --py --sys-prefix jupyterlab_plotly
-jupyter labextension enable --py --sys-prefix jupyterlab_plotly
+cd labextension
+jupyter labextension link .
 # For Notebook
 jupyter nbextension install --symlink --py --sys-prefix jupyterlab_plotly
 jupyter nbextension enable --py --sys-prefix jupyterlab_plotly

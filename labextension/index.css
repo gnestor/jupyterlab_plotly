@@ -1,16 +1,11 @@
-/* 
-  Copyright (c) Jupyter Development Team.
-  Distributed under the terms of the Modified BSD License. 
-*/
-
 .jp-OutputWidgetPlotly, .jp-DocWidgetPlotly {
   width: 100%;
   padding: 0;
 }
 
 .jp-OutputWidgetPlotly {
-  padding-top: 5px;
-  height: 360px;
+  margin-top: 5px;
+  max-height: 360px;
 }
 
 .jp-DocWidgetPlotly {
